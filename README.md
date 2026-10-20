@@ -6,6 +6,8 @@
 
 **Android 14 이상 · ARM64 · 한국어 UI · 현재 버전 0.4.6**
 
+[**APK 다운로드**](https://github.com/cozdx1/duolingo-chess-helper/releases/latest)
+
 ## 화면 예시
 
 <table>
@@ -47,12 +49,14 @@
 
 ## 설치와 사용
 
-1. Android 기기에 **Chess Tip APK**를 설치합니다. 직접 빌드하는 방법은 아래에 있습니다.
+1. [최신 릴리스](https://github.com/cozdx1/duolingo-chess-helper/releases/latest)에서 **ChessTip-0.4.6-arm64-v8a.apk**를 내려받아 설치합니다. 직접 빌드하는 방법은 아래에 있습니다.
 2. Chess Tip을 열고 **준비하고 듀오링고 연결**을 누릅니다. 이미 권한이 준비되어 있으면 **듀오링고 연결**로 표시됩니다.
 3. 안내에 따라 필요한 권한을 허용하고 앱으로 돌아옵니다.
 4. 화면 공유 창에서 **앱 하나 공유 → 다음 → 듀오링고**를 선택합니다.
 5. 새 대국의 첫 화면에서 시작합니다. 흑이라면 백이 첫 수를 둔 화면에서도 시작할 수 있습니다.
 6. **TIP ON**으로 추천을 보거나, **자동 대국 시작**을 눌러 관전합니다.
+
+개발용 디버그 APK를 설치해 둔 기기는 공개 APK로 처음 전환할 때 기존 앱을 삭제한 뒤 설치해야 합니다. 서명이 달라 덮어쓸 수 없으며, 삭제하면 앱 설정이 초기화됩니다. 이후 공개 버전끼리는 같은 배포 서명을 사용합니다.
 
 패널은 체스판을 가리지 않는 곳에 두세요. 패널 어디든 드래그해 옮길 수 있습니다.
 
@@ -127,6 +131,19 @@ Android Studio와 Android SDK Platform 36, Build Tools 36.0.0을 준비합니다
 Gradle 9.1.0과 Android Gradle Plugin 9.0.1을 사용합니다. 스크립트는 Android Studio의 JBR을 사용하며 SDK는 `ANDROID_HOME` 또는 기본 SDK 설치 경로에서 찾습니다. 번들 엔진이 포함되어 있어 일반 앱 빌드에는 NDK를 추가로 설치할 필요가 없습니다.
 
 0.4.6 기준 빌드·Lint·단위 테스트 47개를 통과했습니다. Lint 경고 8개가 남아 있습니다. 실제 MuMu 대국에서 자동 이동 20수와 상대의 응수, 잡기·캐슬링, 판독 실패 후 복구를 확인했습니다. HD·4K 크기로 변환한 이미지의 회귀 테스트도 통과했으며, 실제 4K 설정에서의 대국은 검증하지 않았습니다.
+
+</details>
+
+<details>
+<summary>배포용 APK 만들기 · Windows</summary>
+
+배포용 키 저장소와 비밀번호 파일을 준비한 뒤 실행합니다. 업데이트에는 이전 배포와 같은 키를 사용합니다. 키와 비밀번호는 저장소 밖에 보관하고 별도로 백업하세요. 자세한 내용은 [Android 앱 서명 안내](https://developer.android.com/studio/publish/app-signing)를 참고하세요.
+
+```powershell
+.\scripts\release.ps1 -KeyStore 'C:\keys\chess-tip-release.p12' -PasswordFile 'C:\keys\chess-tip-release.password'
+```
+
+키 별칭의 기본값은 `chess-tip`입니다. 키와 키 저장소의 비밀번호는 같게 설정합니다. 스크립트는 Release 빌드·Release Lint·기존 단위 테스트를 실행한 뒤 APK를 정렬하고 서명과 정렬 상태를 검증합니다. 서명한 APK와 체크섬은 `artifacts/release-<버전>/`에 생성됩니다. 키와 비밀번호는 APK에 포함되지 않습니다.
 
 </details>
 

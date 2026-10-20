@@ -8,3 +8,10 @@ artifacts/
 /image/
 .codex-remote-attachments/
 android-studio-rabbit1-windows.exe
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.password
+keystore.properties
+signing.properties
