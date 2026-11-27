@@ -1,0 +1,4 @@
+<resources>
+    <string name="screen_service_label">Chess Tip 대국 확인</string>
+    <string name="screen_service_description">듀오링고에서 오스카 봇전이 열렸는지 확인합니다. 오스카 봇전에서만 추천 수를 표시합니다. 화면 정보는 기기 안에서 처리합니다.</string>
+</resources>
